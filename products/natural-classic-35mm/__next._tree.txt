@@ -1,0 +1,3 @@
+:HL["/flash-outdoor/_next/static/chunks/2us1_2gy9n_d-.css","style"]
+:HL["/flash-outdoor/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"id","param":{"type":"d","key":"natural-classic-35mm","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"icQ9ES29GnCKbSSK2G1Wf"}
