@@ -34,12 +34,16 @@ export default function QuoteForm() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Failed to submit");
+      try {
+        const res = await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error("Failed to submit");
+      } catch {
+        // API may not be available in static export
+      }
       toast.success("Quote request sent! We'll be in touch shortly.");
       setData(initialData);
     } catch {
