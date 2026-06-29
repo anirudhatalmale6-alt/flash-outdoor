@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String?
+  role      String   @default("customer")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+  reviews   Review[]
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String?
+  user            User?       @relation(fields: [userId], references: [id])
+  customerName    String
+  customerEmail   String
+  customerPhone   String?
+  shippingAddress String
+  shippingCity    String
+  shippingState   String
+  shippingZip     String
+  subtotal        Float
+  shipping        Float       @default(0)
+  total           Float
+  status          String      @default("pending")
+  paymentMethod   String?
+  paymentId       String?
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  order     Order  @relation(fields: [orderId], references: [id])
+  productId String
+  name      String
+  price     Float
+  quantity  Int
+  total     Float
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  productId String
+  name      String
+  rating    Int
+  comment   String
+  verified  Boolean  @default(false)
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model QuoteRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  projectType String
+  areaSize    String?
+  message     String
+  status      String   @default("new")
+  createdAt   DateTime @default(now())
+}
